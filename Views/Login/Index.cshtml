@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Pagina Login";
+}
+@if (@ViewData["Message"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewData["Message"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<div class="container ">
+    <div class="row ">
+        <div class="col-12 ">
+            <div class="mx-auto mt-3" style="width: 25rem;">
+                <div class="card shadow bg-white rounded">
+                    <div class="card-header ">
+                        <h3 class="card-title">Ingresa tus Credenciales</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" asp-controller="Login" asp-action="Loguear">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="userName" name="UsuarioF" type="text" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="password" name="PasswordF" type="password">
+                                </div>
+                                <input class="btn btn-sm btn-success" type="submit" value="Ingresar">
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
