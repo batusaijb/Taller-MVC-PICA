@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Taller1.Models;
 using Taller1;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace webapp
 {
@@ -27,9 +30,26 @@ namespace webapp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "cookie1";
+            })
+               .AddCookie("cookie1", "cookie1", options =>
+               {
+                   options.Cookie.Name = "cookie1";
+                   options.LoginPath = "/Login";
+               });
 
-            
+            services.AddMvc(options =>
+            {
+                options.RespectBrowserAcceptHeader = true; // default is false
+            })
+                 .AddXmlSerializerFormatters() // does not added by default
+                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(swagger =>
             {
