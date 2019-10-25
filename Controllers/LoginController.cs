@@ -35,26 +35,32 @@ namespace Taller1.Controllers
         public string Message { get; set; }
         public async Task<IActionResult> Loguear()
         {
-            var user = configuration.GetSection("UserProfile").Get<UserProfile>();
+            try {   
+            
+                var user = configuration.GetSection("Login").Get<UserProfile>();
 
-            if (!ModelState.IsValid)
-            {
-                ViewData["Message"] = "Error en credenciales";
+                if (!ModelState.IsValid)
+                {
+                    ViewData["Message"] = "Credenciales invalidas, por favor intente nuevamente";
+                    return View("Index");
+                }
+
+                if (UsuarioF == user.userName && PasswordF == user.password)
+                {
+
+                    var identity1 = new ClaimsIdentity("cookie1");
+                    identity1.AddClaim(new Claim("name", UsuarioF));
+                    await HttpContext.SignInAsync("cookie1", new ClaimsPrincipal(identity1));
+
+                    return RedirectToAction("Index", "Ingreso");
+                }
+                ViewData["Message"] = "Credenciales invalidas, por favor intente nuevamente";
                 return View("Index");
             }
-
-            if (UsuarioF == user.userName && PasswordF == user.password && UsuarioIdF==1)
+            catch
             {
-
-                var identity1 = new ClaimsIdentity("cookie1");
-                identity1.AddClaim(new Claim("name", UsuarioF));
-                await HttpContext.SignInAsync("cookie1", new ClaimsPrincipal(identity1));
-
-                return RedirectToAction("Index", "Acceso");
+                return RedirectToAction("Error", "Error");
             }
-            ViewData["Message"] = "Error en credenciales";
-            return View("Index");
-
         }
 
 
