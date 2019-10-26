@@ -9,7 +9,8 @@ password: admin1234
 
 Url: https://localhost:44312/
 
-Url API: https://localhost:44312/api/Formularios	
+Url API: https://localhost:44312/api/Formularios
+         https://localhost:44312/swagger/index.html
 
 
 Request Ejemplo JSON:
