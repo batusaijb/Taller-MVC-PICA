@@ -30,26 +30,6 @@ namespace webapp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = "cookie1";
-            })
-               .AddCookie("cookie1", "cookie1", options =>
-               {
-                   options.Cookie.Name = "cookie1";
-                   options.LoginPath = "/Login";
-               });
-
-            services.AddMvc(options =>
-            {
-                options.RespectBrowserAcceptHeader = true; // default is false
-            })
-                 .AddXmlSerializerFormatters() // does not added by default
-                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(swagger =>
             {
@@ -59,6 +39,24 @@ namespace webapp
             });
 
             services.AddControllersWithViews();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "cookie1";
+            })
+              .AddCookie("cookie1", "cookie1", options =>
+              {
+                  options.Cookie.Name = "cookie1";
+                  options.LoginPath = "/Login";
+              });
+
+            services.AddMvc(options =>
+            {
+                options.RespectBrowserAcceptHeader = true; // default is false
+            })
+                 .AddXmlSerializerFormatters() // does not added by default
+                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<FormularioContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("FormularioContext")));
@@ -101,6 +99,8 @@ namespace webapp
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseDeveloperExceptionPage();
 
             app.UseEndpoints(endpoints =>
             {
