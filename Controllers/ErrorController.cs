@@ -9,7 +9,7 @@ namespace Taller1.Controllers
     public class ErrorController : Controller
     {
         [Route("Error/x00")]
-        public IActionResult Error()
+        protected IActionResult Error()
         {
             return View("Error");
         }

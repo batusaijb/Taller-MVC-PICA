@@ -30,14 +30,19 @@ namespace Taller1.Controllers
         // POST: api/Formularios
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPost]
-        public async Task<ActionResult<Formulario>> PostFormulario(Formulario formulario)
-        {
-            _context.Formulario.Add(formulario);
-            await _context.SaveChangesAsync();
+       
+            [HttpPost]
+            public async Task<ActionResult<Formulario>> PostFormulario(Formulario formulario)
+            {
+                _context.Formulario.Add(formulario);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetFormulario", new { id = formulario.Id }, formulario);
-        }
+                return CreatedAtAction("GetFormulario", new { id = formulario.Id }, formulario);
+            }
+
+        
+
+
 
         private bool FormularioExists(int id)
         {
