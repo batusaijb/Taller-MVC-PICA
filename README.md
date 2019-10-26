@@ -25,8 +25,8 @@ Request XML
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Cedula>4789</Cedula>
-	<Nombre>Wilson</Nombre>
-  <FechaNacimiento>Chia</FechaNacimiento>
-	<Genero>forero-wilson@javeriana.edu.co</Genero>
-  <Celular>3212722217</Celular>
+  <Nombre>prueba55</Nombre>
+  <FechaNacimiento>2019-10-01T00:00:00</FechaNacimiento>
+  <Genero>Masculino</Genero>
+  <Celular>4785533</Celular>
 </Formulario>
