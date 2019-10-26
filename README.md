@@ -9,7 +9,9 @@ password: admin1234
 
 Url: https://localhost:44312/
 
-Url API: https://localhost:44312/api/Formularios
+Url API: https://localhost:44312/api/Formularios	
+
+
 Request Ejemplo JSON:
 {
   "cedula": 4789,
@@ -18,3 +20,13 @@ Request Ejemplo JSON:
   "genero": "Masculino",
   "celular": 4785533
 }
+Request XML
+<Formulario
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Cedula>4789</Cedula>
+	<Nombre>Wilson</Nombre>
+  <FechaNacimiento>Chia</FechaNacimiento>
+	<Genero>forero-wilson@javeriana.edu.co</Genero>
+  <Celular>3212722217</Celular>
+</Formulario>
